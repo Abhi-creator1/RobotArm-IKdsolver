@@ -21,9 +21,8 @@ This project demonstrates the control and simulation of a 4 Degree-of-Freedom (D
 1. **Clone the repository**:
     ```bash
     git clone https://github.com/Abhi-creator1/4DOF_RobotArm_ROS2.git
-    cd 4DOF_RobotArm_ROS2
     ```
-    (importent rename downloaded folder as my_robot_arm )
+    rename downloaded folder as `my_robot_arm`
 
 2. **Install dependencies**:
     Make sure you have ROS2 installed and sourced. You will also need the necessary dependencies like `interactive_markers`, `geometry_msgs`, etc.
@@ -41,18 +40,14 @@ This project demonstrates the control and simulation of a 4 Degree-of-Freedom (D
 5. **Run the nodes**:
     Start the interactive marker publisher and other necessary nodes:
     ```bash
-    ros2 run <your_package_name> interactive_marker_publisher
+    ros2 launch my_robot_arm display.launch.py
     ```
 
 ## Usage
 1. **Launch RViz** and load the robot model. You should see the 4DOF robotic arm along with interactive markers.
-2. **Move the interactive marker** to the desired position to control the robot's end effector.
+2. **Move the interactive marker** to the desired position to control the robot's TCP.
 3. The inverse kinematics will be calculated, and the robot's joints will move accordingly.
 
-## Acknowledgements
-- ROS2 (Robot Operating System 2) for the core framework
-- RViz for visualization
-- All contributors to ROS2 packages and open-source libraries used in this project
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

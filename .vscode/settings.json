@@ -1,0 +1,18 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/a/ros2_ws/install/my_robot_kinematics/lib/python3.10/site-packages",
+        "/home/a/ros2_ws/install/my_robot_arm/lib/python3.10/site-packages",
+        "/home/a/ros2_ws/install/joint_state_processor/lib/python3.10/site-packages",
+        "/home/a/ros2_ws/install/asrs_robot_ik/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/a/ros2_ws/install/my_robot_kinematics/lib/python3.10/site-packages",
+        "/home/a/ros2_ws/install/my_robot_arm/lib/python3.10/site-packages",
+        "/home/a/ros2_ws/install/joint_state_processor/lib/python3.10/site-packages",
+        "/home/a/ros2_ws/install/asrs_robot_ik/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

@@ -37,7 +37,7 @@ This project demonstrates the control and simulation of a 4 Degree-of-Freedom (D
     source install/setup.bash
     ```
 
-5. **Run the nodes**:
+5. **Launch project**:
     Start the interactive marker publisher and other necessary nodes:
     ```bash
     ros2 launch my_robot_arm display.launch.py

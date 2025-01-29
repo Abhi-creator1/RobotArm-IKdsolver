@@ -11,7 +11,7 @@ This project demonstrates the control and simulation of a 4 Degree-of-Freedom (D
 - **URDF Model**: The robot's model is created using URDF with custom mesh files for each link of the robot.
 
 ## Requirements
-- ROS2 (FoxFox or higher)
+- ROS2 (humble)
 - Python 3.x
 - RViz (for visualization)
 - Robot model in URDF format with meshes

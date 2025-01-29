@@ -23,6 +23,7 @@ This project demonstrates the control and simulation of a 4 Degree-of-Freedom (D
     git clone https://github.com/Abhi-creator1/4DOF_RobotArm_ROS2.git
     cd 4DOF_RobotArm_ROS2
     ```
+    (importent rename downloaded folder as my_robot_arm )
 
 2. **Install dependencies**:
     Make sure you have ROS2 installed and sourced. You will also need the necessary dependencies like `interactive_markers`, `geometry_msgs`, etc.

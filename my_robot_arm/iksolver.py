@@ -26,7 +26,7 @@ class IKSolverNode(Node):
         # Parameters for IK
         self.learning_rate = 0.1
         self.tolerance = 1e-6
-        self.max_iterations = 100
+        self.max_iterations = 50
         self.get_logger().info("IK Solver Node initialized.")
 
     def target_position_callback(self, msg):
@@ -66,6 +66,7 @@ class IKSolverNode(Node):
         a2, alpha2, d2 = 0.24381, 0, 0
         a3, alpha3, d3 = 0.12475, 0, 0
         a4, alpha4, d4 = 0.08475, -np.pi / 2, 0
+
 
         # Helper functions
         def dh_transform(a, alpha, d, theta):

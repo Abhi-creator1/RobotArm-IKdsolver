@@ -43,7 +43,7 @@ class InteractiveMarkerPublisher(Node):
         # Set the initial pose
         marker.pose.position.x = 0.5
         marker.pose.position.y = 0.0
-        marker.pose.position.z = 0.2
+        marker.pose.position.z = 0.5
         marker.pose.orientation.w = 1.0
 
         # Add control for move/rotate interaction
@@ -97,7 +97,7 @@ class InteractiveMarkerPublisher(Node):
         Publish an initial target position to initialize the interactive marker and robot model.
         """
         initial_position = Point()
-        initial_position.x = 1.0
+        initial_position.x = 0.5
         initial_position.y = 0.2
         initial_position.z = 0.5
         self.target_position_publisher.publish(initial_position)

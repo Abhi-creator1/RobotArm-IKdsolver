@@ -1,4 +1,4 @@
-# 4DOF Robot Arm ROS2 Project
+# Inverse Kinematics solver for 4DOF Robot Arm ROS2 Project
 
 ## Project Overview
 This project demonstrates the control and simulation of a 4 Degree-of-Freedom (DOF) robotic arm using ROS2 (Robot Operating System 2). The system consists of a robot model defined using URDF (Unified Robot Description Format) and features inverse kinematics (IK) for controlling the arm's motion. The arm can be interacted with using interactive markers in RViz to move the arm's end effector to a target position in 3D space.
@@ -20,7 +20,7 @@ This project demonstrates the control and simulation of a 4 Degree-of-Freedom (D
 ## Installation
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/Abhi-creator1/4DOF_RobotArm_ROS2.git
+    git clone https://github.com/Abhi-creator1/RobotArm-IKdsolver.git
     ```
     rename downloaded folder as `my_robot_arm`
 

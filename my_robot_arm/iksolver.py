@@ -14,7 +14,7 @@ class IKSolverNode(Node):
         self.upper_limits = np.array([np.pi, np.pi / 2, np.pi / 2, np.pi])
         self.learning_rate = 0.02
         self.tolerance = 1e-6
-        self.max_iterations = 100
+        self.max_iterations = 80
 
     def target_position_callback(self, msg):
         x_target, y_target, z_target = msg.x, msg.y, msg.z

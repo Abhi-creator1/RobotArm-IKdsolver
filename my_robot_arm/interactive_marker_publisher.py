@@ -42,7 +42,7 @@ class InteractiveMarkerPublisher(Node):
 
         # Set the initial pose
         marker.pose.position.x = 0.35
-        marker.pose.position.y = -0.04
+        marker.pose.position.y = -0.05
         marker.pose.position.z = 0.2
         marker.pose.orientation.w = 1.0
 

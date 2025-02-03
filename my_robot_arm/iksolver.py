@@ -7,68 +7,40 @@ import numpy as np
 class IKSolverNode(Node):
     def __init__(self):
         super().__init__('ik_solver')
-        self.subscription = self.create_subscription(
-            Point,
-            '/target_position',
-            self.target_position_callback,
-            10
-        )
-        self.publisher = self.create_publisher(
-            JointState,
-            '/joint_states',
-            10
-        )
-        # Initialize current joint angles
-        self.current_joint_angles = [0.0, 0.0, 0.0, 0.0]
-        # Joint limits
-        self.lower_limits = [-np.pi, -np.pi / 2, -np.pi / 2, -np.pi]
-        self.upper_limits = [np.pi, np.pi / 2, np.pi / 2, np.pi]
-        # Parameters for IK
-        self.learning_rate = 0.1
+        self.subscription = self.create_subscription(Point, '/target_position', self.target_position_callback, 10)
+        self.publisher = self.create_publisher(JointState, '/joint_states', 10)
+        self.current_joint_angles = np.array([0.0, np.pi / 4, -np.pi / 4, 0.0])  
+        self.lower_limits = np.array([-np.pi, -np.pi / 2, -np.pi / 2, -np.pi])
+        self.upper_limits = np.array([np.pi, np.pi / 2, np.pi / 2, np.pi])
+        self.learning_rate = 0.02
         self.tolerance = 1e-6
-        self.max_iterations = 50
-        self.get_logger().info("IK Solver Node initialized.")
+        self.max_iterations = 100
 
     def target_position_callback(self, msg):
-        # Extract target position
-        x_target = msg.x
-        y_target = msg.y
-        z_target = msg.z
+        x_target, y_target, z_target = msg.x, msg.y, msg.z
+        joint_angles, final_error = self.inverse_kinematics(x_target, y_target, z_target)
 
-        # Call the IK solver
-        try:
-            joint_angles = self.inverse_kinematics(x_target, y_target, z_target)
+        if not all(np.isfinite(joint_angles)):
+            return
+        
+        joint_state = JointState()
+        joint_state.name = ['world_to_baselink', 'base_to_shoulder', 'shoulder_to_elbow', 'elbow_to_wrist1']
+        joint_state.position = [float(angle) for angle in joint_angles]
+        joint_state.header.stamp = self.get_clock().now().to_msg()
+        self.publisher.publish(joint_state)
 
-            # Validate joint angles
-            if not all(np.isfinite(joint_angles)):
-                raise ValueError("Computed joint angles contain invalid values (e.g., NaN or Inf).")
-
-            # Create and publish the JointState message
-            joint_state = JointState()
-            joint_state.name = ['world_to_baselink', 'base_to_shoulder', 'shoulder_to_elbow', 'elbow_to_wrist1']
-            joint_state.position = [float(angle) for angle in joint_angles]
-            joint_state.header.stamp = self.get_clock().now().to_msg()
-            self.publisher.publish(joint_state)
-
-            self.get_logger().info(f"Published joint angles: {joint_angles}")
-        except Exception as e:
-            self.get_logger().error(f"Error in IK Solver: {e}")
+        print(f"Final Joint Angles: {joint_angles}")
+        print(f"Final Error: {final_error}")
 
     def clamp_joint_values(self, joint_positions):
-        """
-        Clamp joint positions within their respective limits.
-        """
         return np.clip(joint_positions, self.lower_limits, self.upper_limits)
 
     def inverse_kinematics(self, x_target, y_target, z_target):
-        # Define DH parameters
         a1, alpha1, d1 = 0, np.pi / 2, 0.14415
         a2, alpha2, d2 = 0.24381, 0, 0
         a3, alpha3, d3 = 0.12475, 0, 0
         a4, alpha4, d4 = 0.08475, -np.pi / 2, 0
 
-
-        # Helper functions
         def dh_transform(a, alpha, d, theta):
             return np.array([
                 [np.cos(theta), -np.sin(theta) * np.cos(alpha), np.sin(theta) * np.sin(alpha), a * np.cos(theta)],
@@ -82,50 +54,44 @@ class IKSolverNode(Node):
             T2 = dh_transform(a2, alpha2, d2, theta2)
             T3 = dh_transform(a3, alpha3, d3, theta3)
             T4 = dh_transform(a4, alpha4, d4, theta4)
-            T = np.matmul(np.matmul(np.matmul(T1, T2), T3), T4)
+            T = T1 @ T2 @ T3 @ T4
             return T[:3, 3]
 
-        # Use stored joint angles as the initial guess
         theta = np.array(self.current_joint_angles, dtype=float)
 
-        for iteration in range(self.max_iterations):
-            # Current end-effector position
+        for _ in range(self.max_iterations):
             position = forward_kinematics(*theta)
             error = np.linalg.norm(position - np.array([x_target, y_target, z_target]))
 
             if error < self.tolerance:
-                self.get_logger().info(f"Converged after {iteration} iterations with error: {error}")
                 break
 
-            # Compute Jacobian numerically
             jacobian = np.zeros((3, 4))
+            delta = 1e-6
             for i in range(4):
-                delta = 1e-6
                 theta_copy = theta.copy()
                 theta_copy[i] += delta
                 position_delta = forward_kinematics(*theta_copy) - position
                 jacobian[:, i] = position_delta / delta
 
             try:
-                # Compute the position error
                 position_error = np.array([x_target, y_target, z_target]) - position
+                jacobian_norm = np.linalg.norm(jacobian)
+                damping_factor = 0.01  
+                if jacobian_norm < 1e-6:
+                    jacobian += damping_factor * np.eye(jacobian.shape[0])
 
-                # Solve for joint angle updates using the pseudo-inverse
                 delta_theta = np.linalg.pinv(jacobian) @ position_error
-
-                # Scale the updates
-                delta_theta = np.clip(delta_theta, -0.1, 0.1)  # Limit max step size
-                theta += self.learning_rate * delta_theta
-
-                # Clamp the joint angles within limits
+                adaptive_learning_rate = self.learning_rate * (1.0 / (1.0 + error))
+                delta_theta = np.clip(delta_theta, -0.2, 0.2)
+                theta += adaptive_learning_rate * delta_theta
                 theta = self.clamp_joint_values(theta)
-            except np.linalg.LinAlgError as e:
-                self.get_logger().error(f"Jacobian pseudo-inverse failed: {e}")
+
+            except np.linalg.LinAlgError:
                 break
 
-        # Save the updated joint angles
         self.current_joint_angles = theta.tolist()
-        return theta
+        return theta, error
 
 def main(args=None):
     rclpy.init(args=args)

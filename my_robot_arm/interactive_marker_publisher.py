@@ -41,9 +41,9 @@ class InteractiveMarkerPublisher(Node):
         marker.description = "3D Interactive Marker (Move + Rotate)"
 
         # Set the initial pose
-        marker.pose.position.x = 0.5
-        marker.pose.position.y = 0.0
-        marker.pose.position.z = 0.5
+        marker.pose.position.x = 0.35
+        marker.pose.position.y = -0.04
+        marker.pose.position.z = 0.2
         marker.pose.orientation.w = 1.0
 
         # Add control for move/rotate interaction
@@ -83,7 +83,7 @@ class InteractiveMarkerPublisher(Node):
         position = feedback.pose.position
 
         # Log the position for debugging
-        self.get_logger().info(f"Marker moved to position: x={position.x}, y={position.y}, z={position.z}")
+        #self.get_logger().info(f"Marker moved to position: x={position.x}, y={position.y}, z={position.z}")
 
         # Create a Point message and publish it
         target_position = Point()
@@ -97,9 +97,9 @@ class InteractiveMarkerPublisher(Node):
         Publish an initial target position to initialize the interactive marker and robot model.
         """
         initial_position = Point()
-        initial_position.x = 0.5
+        initial_position.x = 0.2
         initial_position.y = 0.2
-        initial_position.z = 0.5
+        initial_position.z = 0.4
         self.target_position_publisher.publish(initial_position)
 
 def main(args=None):
@@ -107,7 +107,7 @@ def main(args=None):
     node = InteractiveMarkerPublisher()
 
     # Allow for some initialization time
-    node.get_clock().sleep_for(rclpy.duration.Duration(seconds=1))
+    node.get_clock().sleep_for(rclpy.duration.Duration(seconds=2))
 
     rclpy.spin(node)
     node.destroy_node()

@@ -15,7 +15,7 @@
         </inertial>
         <visual>
             <geometry>
-                <mesh filename="package://asrs_arm/meshes/link_1.STL"/>
+                <mesh filename="package://my_robot_arm/meshes/link_1.STL"/>
             </geometry>
             <material name=" ">
                 <color rgba="0.0 1.0 0.0 1.0"/>
@@ -23,7 +23,7 @@
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://asrs_arm/meshes/link_1.STL"/>
+                <mesh filename="package://my_robot_arm/meshes/link_1.STL"/>
             </geometry>
         </collision>
     </link>
@@ -36,7 +36,7 @@
         </inertial>
         <visual>
             <geometry>
-                <mesh filename="package://asrs_arm/meshes/link_2.STL"/>
+                <mesh filename="package://my_robot_arm/meshes/link_2.STL"/>
             </geometry>
             <material name=" ">
                 <color rgba="0.0 0.0 1.0 1.0"/>
@@ -44,7 +44,7 @@
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://asrs_arm/meshes/link_2.STL"/>
+                <mesh filename="package://my_robot_arm/meshes/link_2.STL"/>
             </geometry>
         </collision>
     </link>
@@ -57,7 +57,7 @@
         </inertial>
         <visual>
             <geometry>
-                <mesh filename="package://asrs_arm/meshes/link_3.STL"/>
+                <mesh filename="package://my_robot_arm/meshes/link_3.STL"/>
             </geometry>
             <material name=" ">
                 <color rgba="0.0 0.0 1.0 1.0"/>
@@ -65,7 +65,7 @@
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://asrs_arm/meshes/link_3.STL"/>
+                <mesh filename="package://my_robot_arm/meshes/link_3.STL"/>
             </geometry>
         </collision>
     </link>
@@ -78,7 +78,7 @@
         </inertial>
         <visual>
             <geometry>
-                <mesh filename="package://asrs_arm/meshes/link_4.STL"/>
+                <mesh filename="package://my_robot_arm/meshes/link_4.STL"/>
             </geometry>
             <material name=" ">
                 <color rgba="0.0 0.0 1.0 1.0"/>
@@ -86,7 +86,7 @@
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://asrs_arm/meshes/link_4.STL"/>
+                <mesh filename="package://my_robot_arm/meshes/link_4.STL"/>
             </geometry>
         </collision>
     </link>

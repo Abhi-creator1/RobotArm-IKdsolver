@@ -14,6 +14,7 @@ setup(
         (os.path.join('share', package_name, 'urdf'), glob('urdf/*.xacro')),
         (os.path.join('share', package_name, 'rviz'), glob('rviz/*.rviz')),
         (os.path.join('share', 'ament_index', 'resource_index', 'packages'), [f'resource/{package_name}']),
+        (os.path.join('share', package_name, 'meshes'), glob('meshes/*.STL')),
     ],
     install_requires=['setuptools', 'rclpy', 'geometry_msgs', 'visualization_msgs', 'interactive_markers', 'tf2_ros'],
     zip_safe=True,

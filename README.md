@@ -22,7 +22,7 @@ The arm is controlled via **interactive markers in RViz**, allowing users to mov
 [![IK solver demo in V1](assets/Screenshot_1.png)](https://youtu.be/b1hVl7t81uQ)
 
 **2. Motion Planning Showcase**  
-[![Final fully Mesh Demo](assets/screenshot_2.png)](https://youtu.be/3FyhsID-Q4M)
+[![Final fully Mesh Demo](assets/Screenshot_2.png)](https://youtu.be/3FyhsID-Q4M)
 
 *(Click images to watch the videos on YouTube.)*
 

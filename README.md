@@ -1,53 +1,88 @@
-# Inverse Kinematics solver for 4DOF Robot Arm ROS2 Project
+# Inverse Kinematics Solver for 4-DOF Robot Arm (ROS2)
 
-## Project Overview
-This project demonstrates the control and simulation of a 4 Degree-of-Freedom (DOF) robotic arm using ROS2 (Robot Operating System 2). The system consists of a robot model defined using URDF (Unified Robot Description Format) and features inverse kinematics (IK) for controlling the arm's motion. The arm can be interacted with using interactive markers in RViz to move the arm's end effector to a target position in 3D space.
+![Project Demo](assets/screenshot 2.png)
 
-## Features
-- **4-DOF Robotic Arm**: A robotic arm with four joints (base, shoulder, elbow, wrist) designed for precise control in simulation.
-- **ROS2 Integration**: Uses ROS2 for communication, allowing for seamless interaction with other ROS-based systems.
-- **Interactive Markers**: Provides a 3D interactive marker in RViz for users to move and rotate the arm's end effector.
-- **Inverse Kinematics**: Solves the inverse kinematics to determine the joint angles based on the target position of the end effector.
-- **URDF Model**: The robot's model is created using URDF with custom mesh files for each link of the robot.
+A ROS2-based project demonstrating **real-time control and simulation** of a custom **4-DOF robotic arm** using inverse kinematics (IK).  
+The arm is controlled via **interactive markers in RViz**, allowing users to move the end-effector in 3D space while the solver calculates and updates joint positions.
 
-## Requirements
-- ROS2 (humble)
+---
+
+## 🚀 Features
+- **4-DOF Robotic Arm** – Base, shoulder, elbow, and wrist joints designed for smooth and precise control.  
+- **Inverse Kinematics Solver** – Computes joint angles to reach any target pose within the arm’s workspace.  
+- **ROS2 Integration (Humble)** – Built with ROS2, making it compatible with modern robotics systems.  
+- **Interactive RViz Control** – Use drag-and-drop interactive markers to position the end-effector.  
+- **URDF Model with Custom Meshes** – A visually detailed and physically accurate robot model.
+
+---
+
+## 📹 Demo Videos
+
+**1. IK Solver in Action (version 1)**  
+[![IK solver demo in V1](assets/screenshot 1.png)](https://youtu.be/b1hVl7t81uQ)
+
+**2. Motion Planning Showcase**  
+[![Final fully Mesh Demo](assets/screenshot 2.png)](https://youtu.be/3FyhsID-Q4M)
+
+*(Click images to watch the videos on YouTube.)*
+
+---
+
+## 🛠 Requirements
+- ROS2 Humble
 - Python 3.x
-- RViz (for visualization)
-- Robot model in URDF format with meshes
-- ROS2 packages for `interactive_markers` and `geometry_msgs`
+- RViz2 (for visualization)
+- URDF-based robot model
+- ROS2 packages:
+  - `interactive_markers`
+  - `geometry_msgs`
 
-## Installation
-1. **Clone the repository**:
+---
+
+## 🔧 Installation
+
+1. **Clone the repository:**
     ```bash
     git clone https://github.com/Abhi-creator1/RobotArm-IKdsolver.git
+    mv RobotArm-IKdsolver my_robot_arm
     ```
-    rename downloaded folder as `my_robot_arm`
 
-2. **Install dependencies**:
-    Make sure you have ROS2 installed and sourced. You will also need the necessary dependencies like `interactive_markers`, `geometry_msgs`, etc.
+2. **Install dependencies:**
+    Ensure ROS2 Humble is installed and sourced:
+    ```bash
+    source /opt/ros/humble/setup.bash
+    sudo apt install ros-humble-interactive-markers ros-humble-geometry-msgs
+    ```
 
-3. **Build the workspace**:
+3. **Build the workspace:**
     ```bash
     colcon build --symlink-install
     ```
 
-4. **Source the workspace**:
+4. **Source the workspace:**
     ```bash
     source install/setup.bash
     ```
 
-5. **Launch project**:
-    Start the interactive marker publisher and other necessary nodes:
+5. **Run the project:**
     ```bash
     ros2 launch my_robot_arm display.launch.py
     ```
 
-## Usage
-1. **Launch RViz** and load the robot model. You should see the 4DOF robotic arm along with interactive markers.
-2. **Move the interactive marker** to the desired position to control the robot's TCP.
-3. The inverse kinematics will be calculated, and the robot's joints will move accordingly.
+---
 
+## 🎮 Usage
+1. Launch RViz and load the robot model.  
+2. Move the interactive marker in 3D space to control the end-effector (TCP).  
+3. The inverse kinematics solver will compute and update joint positions automatically.  
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+---
+
+## 📜 License
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+
+---
+
+### 💡 Looking for Internships/Thesis Roles  
+I am actively looking for opportunities in **robotics, motion planning, and control systems**.  
+If this project interests you, feel free to reach out via my GitHub or [LinkedIn](https://linkedin.com/in/YOUR-LINK).

@@ -15,16 +15,11 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             'xacro_file',
-           # default_value='/my_robot_arm/urdf/asrs_robot.xacro',
+           
             default_value=os.path.join(get_package_share_directory("my_robot_arm"), "urdf", "asrs_robot.xacro"),
             description='Path to the URDF xacro file'
             
         ),
-        #DeclareLaunchArgument(
-         #'xacro_file',
-          #default_value='$(ros2 pkg prefix my_robot_arm)/share/my_robot_arm/urdf/asrs_robot.xacro'
-
-        #),
 
         Node(
             package='robot_state_publisher',
@@ -44,23 +39,17 @@ def generate_launch_description():
             arguments=["-d", os.path.join(get_package_share_directory("my_robot_arm"), "rviz", "rviz_config.rviz")]
         ),
 
-#        Node(
-#            package='joint_state_publisher',
-#            executable='joint_state_publisher',
-#            output='screen',
-#            parameters=[{'robot_description': LaunchConfiguration('xacro_file')}]
-#        ),
 
         Node(
-            package='my_robot_arm',  # Change this to your package name
-            executable='interactive_marker_publisher',  # Name of the new node
+            package='my_robot_arm',
+            executable='interactive_marker_publisher',
             name='interactive_marker_publisher_node',
             output='screen'
         ),
         
         Node(
-            package='my_robot_arm',  # Replace with your package name
-            executable='iksolver',       # Node executable name
+            package='my_robot_arm',
+            executable='iksolver',    
             name='ik_solver_node',
             output='screen',
         ),

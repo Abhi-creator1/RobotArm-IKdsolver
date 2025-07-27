@@ -1,6 +1,6 @@
 # Inverse Kinematics Solver for 4-DOF Robot Arm (ROS2)
 
-![Project Demo](assets/screenshot 2.png)
+![Project Demo](assets/Screenshot 2.png)
 
 A ROS2-based project demonstrating **real-time control and simulation** of a custom **4-DOF robotic arm** using inverse kinematics (IK).  
 The arm is controlled via **interactive markers in RViz**, allowing users to move the end-effector in 3D space while the solver calculates and updates joint positions.
@@ -19,10 +19,10 @@ The arm is controlled via **interactive markers in RViz**, allowing users to mov
 ## 📹 Demo Videos
 
 **1. IK Solver in Action (version 1)**  
-[![IK solver demo in V1](assets/screenshot 1.png)](https://youtu.be/b1hVl7t81uQ)
+[![IK solver demo in V1](assets/Screenshot 1.png)](https://youtu.be/b1hVl7t81uQ)
 
 **2. Motion Planning Showcase**  
-[![Final fully Mesh Demo](assets/screenshot 2.png)](https://youtu.be/3FyhsID-Q4M)
+[![Final fully Mesh Demo](assets/Screenshot 2.png)](https://youtu.be/3FyhsID-Q4M)
 
 *(Click images to watch the videos on YouTube.)*
 

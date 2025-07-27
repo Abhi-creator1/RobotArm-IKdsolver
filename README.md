@@ -85,4 +85,4 @@ This project is licensed under the MIT License – see the [LICENSE](LICENSE) fi
 
 ### 💡 Looking for Internships/Thesis Roles  
 I am actively looking for opportunities in **robotics, motion planning, and control systems**.  
-If this project interests you, feel free to reach out via my GitHub or [LinkedIn](https://linkedin.com/in/YOUR-LINK).
+If this project interests you, feel free to reach out via my GitHub or [LinkedIn](https://www.linkedin.com/in/abhishek-thakur85/).
